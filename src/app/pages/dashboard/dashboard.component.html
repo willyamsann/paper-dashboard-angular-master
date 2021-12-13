@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats">
-      <div class="card-body ">
+      <div class="card-body">
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
@@ -11,23 +11,21 @@
           <div class="col-7 col-md-8">
             <div class="numbers">
               <p class="card-category">Valor Total</p>
-              <p class="card-title">{{valorTotal | currency : 'R$' }}
-                <p>
+              <p class="card-title">{{ valorTotal | currency: "R$" }}</p>
+              <p></p>
             </div>
           </div>
         </div>
       </div>
-      <div class="card-footer ">
-        <hr>
-        <div class="stats">
-          <i class="fa fa-refresh"></i> Update Now
-        </div>
+      <div class="card-footer">
+        <hr />
+        <div class="stats"><i class="fa fa-refresh"></i> Update Now</div>
       </div>
     </div>
   </div>
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats">
-      <div class="card-body ">
+      <div class="card-body">
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
@@ -37,23 +35,21 @@
           <div class="col-7 col-md-8">
             <div class="numbers">
               <p class="card-category">SAIDA</p>
-              <p class="card-title">{{saida  | currency : 'R$' }}
-                <p>
+              <p class="card-title">{{ saida | currency: "R$" }}</p>
+              <p></p>
             </div>
           </div>
         </div>
       </div>
-      <div class="card-footer ">
-        <hr>
-        <div class="stats">
-          <i class="fa fa-calendar-o"></i> Last day
-        </div>
+      <div class="card-footer">
+        <hr />
+        <div class="stats"><i class="fa fa-calendar-o"></i> Last day</div>
       </div>
     </div>
   </div>
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats">
-      <div class="card-body ">
+      <div class="card-body">
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
@@ -63,23 +59,21 @@
           <div class="col-7 col-md-8">
             <div class="numbers">
               <p class="card-category">Entradas</p>
-              <p class="card-title">{{entrada  | currency : 'R$' }}
-                <p>
+              <p class="card-title">{{ entrada | currency: "R$" }}</p>
+              <p></p>
             </div>
           </div>
         </div>
       </div>
-      <div class="card-footer ">
-        <hr>
-        <div class="stats">
-          <i class="fa fa-clock-o"></i> In the last hour
-        </div>
+      <div class="card-footer">
+        <hr />
+        <div class="stats"><i class="fa fa-clock-o"></i> In the last hour</div>
       </div>
     </div>
   </div>
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats">
-      <div class="card-body ">
+      <div class="card-body">
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
@@ -89,17 +83,15 @@
           <div class="col-7 col-md-8">
             <div class="numbers">
               <p class="card-category">Investimentos</p>
-              <p class="card-title">{{investimentos  | currency : 'R$' }}
-                <p>
+              <p class="card-title">{{ investimentos | currency: "R$" }}</p>
+              <p></p>
             </div>
           </div>
         </div>
       </div>
-      <div class="card-footer ">
-        <hr>
-        <div class="stats">
-          <i class="fa fa-refresh"></i> Update now
-        </div>
+      <div class="card-footer">
+        <hr />
+        <div class="stats"><i class="fa fa-refresh"></i> Update now</div>
       </div>
     </div>
   </div>
@@ -108,107 +100,183 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title"> Movimentações</h4>
+        <h4 class="card-title">Movimentações</h4>
       </div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table">
-            <thead class=" text-primary">
+            <thead class="text-primary">
               <tr>
-                 <th scope="col">#</th>
+                <th scope="col">#</th>
                 <th scope="col">Tipo Movimentação</th>
-                <th scope="col">Valor </th>
+                <th scope="col">Valor</th>
                 <th scope="col">Data</th>
-                <th scope="col">Itens</th>  
+                <th scope="col">Itens</th>
               </tr>
             </thead>
-            <tbody *ngFor="let movimentacao of financas; let i = index;">
+            <tbody *ngFor="let movimentacao of financeApi; let i = index">
               <tr>
-                <th scope="row">{{i + 1}}</th>
-                <td>{{movimentacao.tipo}}</td>
-                <td>{{movimentacao.valor  | currency : 'R$'   }}</td>
-                <td>{{movimentacao.data}}</td>
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ movimentacao.byTitle }}</td>
+                <td>{{ movimentacao.byValor }}</td>
+                <td>{{ movimentacao.byDescription }}</td>
                 <td>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#exampleModal-' + i">
-                        Excluir
-                      </button>
-                      <button type="button" style="margin-left: 10px;" class="btn btn-waring" data-toggle="modal" [attr.data-target]="'#editModal-' + i">
-                        Editar
-                      </button>
-                    </td> 
-             </tr>
-             <div class="modal fade" id="exampleModal-{{i}}"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-toggle="modal"
+                    [attr.data-target]="'#exampleModal-' + i"
+                  >
+                    Excluir
+                  </button>
+                  <button
+                    type="button"
+                    style="margin-left: 10px"
+                    class="btn btn-waring"
+                    data-toggle="modal"
+                    [attr.data-target]="'#editModal-' + i"
+                  >
+                    Editar
+                  </button>
+                </td>
+              </tr>
+              <div
+                class="modal fade"
+                id="exampleModal-{{ i }}"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Desejar realmente excluir?</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Desejar realmente excluir?
+                      </h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body">
-                      <h5> <b>Tipo: {{movimentacao.tipo}}</b></h5>
-                      <h5> <b>Valor: {{movimentacao.valor}}</b></h5>
-                      <h5> <b>Data: {{movimentacao.data}}</b></h5>
+                      <h5>
+                        <b>Tipo: {{ movimentacao.tipo }}</b>
+                      </h5>
+                      <h5>
+                        <b>Valor: {{ movimentacao.valor }}</b>
+                      </h5>
+                      <h5>
+                        <b>Data: {{ movimentacao.data }}</b>
+                      </h5>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" (click)="excluirItem(i)" data-dismiss="modal">Excluir</button>
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        (click)="excluirItem(i)"
+                        data-dismiss="modal"
+                      >
+                        Excluir
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-         <!---------MODAL EDIT ----->
-         <div class="modal fade" id="editModal-{{i}}"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar Modal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Tipo</label>
-                  <select class="form-control" [(ngModel)]="movimentacao.tipo" id="tipo" name="tipo">
-                    <option value="Entrada">Entrada</option>
-                    <option value="Saida">Saida</option>
-                    <option value="Investimento">Investimento</option>
-                  </select>
+              <!---------MODAL EDIT ----->
+              <div
+                class="modal fade"
+                id="editModal-{{ i }}"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Editar Modal
+                      </h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Tipo</label>
+                        <select
+                          class="form-control"
+                          [(ngModel)]="movimentacao.tipo"
+                          id="tipo"
+                          name="tipo"
+                        >
+                          <option value="Entrada">Entrada</option>
+                          <option value="Saida">Saida</option>
+                          <option value="Investimento">Investimento</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Valor</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="valor"
+                          name="valor"
+                          [(ngModel)]="movimentacao.valor"
+                          placeholder="Valor"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Data</label>
+                        <input
+                          type="datetime"
+                          class="form-control"
+                          id="valor"
+                          name="valor"
+                          [(ngModel)]="movimentacao.data"
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        (click)="recalcular()"
+                        data-dismiss="modal"
+                      >
+                        Ok
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Valor</label>
-                  <input type="number" class="form-control" id="valor" name="valor" [(ngModel)]="movimentacao.valor" placeholder="Valor">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Data</label>
-                  <input type="datetime" class="form-control" id="valor" name="valor" [(ngModel)]="movimentacao.data">
-                </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-success" (click)="recalcular()" data-dismiss="modal">Ok</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-              </tbody>
-            </table>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
   <div class="col-md-12">
-    <div class="card ">
-      <div class="card-header ">
+    <div class="card">
+      <div class="card-header">
         <h5 class="card-title">Users Behavior</h5>
         <p class="card-category">24 Hours performance</p>
       </div>
-      <div class="card-body ">
-        <canvas id=chartHours width="400" height="100"></canvas>
+      <div class="card-body">
+        <canvas id="chartHours" width="400" height="100"></canvas>
       </div>
-      <div class="card-footer ">
-        <hr>
+      <div class="card-footer">
+        <hr />
         <div class="stats">
           <i class="fa fa-history"></i> Updated 3 minutes ago
         </div>
@@ -218,22 +286,22 @@
 </div>
 <div class="row">
   <div class="col-md-4">
-    <div class="card ">
-      <div class="card-header ">
+    <div class="card">
+      <div class="card-header">
         <h5 class="card-title">Email Statistics</h5>
         <p class="card-category">Last Campaign Performance</p>
       </div>
-      <div class="card-body ">
+      <div class="card-body">
         <canvas id="chartEmail"></canvas>
       </div>
-      <div class="card-footer ">
+      <div class="card-footer">
         <div class="legend">
           <i class="fa fa-circle text-primary"></i> Opened
           <i class="fa fa-circle text-warning"></i> Read
           <i class="fa fa-circle text-danger"></i> Deleted
           <i class="fa fa-circle text-gray"></i> Unopened
         </div>
-        <hr>
+        <hr />
         <div class="stats">
           <i class="fa fa-calendar"></i> Number of emails sent
         </div>
@@ -254,7 +322,7 @@
           <i class="fa fa-circle text-info"></i> Tesla Model S
           <i class="fa fa-circle text-warning"></i> BMW 5 Series
         </div>
-        <hr/>
+        <hr />
         <div class="card-stats">
           <i class="fa fa-check"></i> Data information certified
         </div>

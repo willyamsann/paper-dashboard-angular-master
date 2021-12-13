@@ -1,5 +1,5 @@
 export class Finance {
-    tipo?: string;
-    valor?: number;
-    data?: string;
+  tipo?: string;
+  valor?: number;
+  data?: string;
 }
