@@ -1,7 +1,7 @@
 export class FinanceApi {
   id?: number;
-  tipo?: string;
-  valor?: string;
-  data?: string;
+  byTitle?: string;
+  byValor?: string;
+  byDescription?: string;
   published?: boolean;
 }
