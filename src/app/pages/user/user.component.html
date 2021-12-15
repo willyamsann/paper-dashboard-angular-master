@@ -2,7 +2,8 @@
   <div class="col-md-12">
     <div class="card card-user">
       <div class="card-header">
-        <h5 class="card-title">Adicionar Movimentações</h5>
+        <h5 class="card-title" *ngIf="!isEdit">Adicionar Movimentações</h5>
+        <h5 class="card-title" *ngIf="isEdit">Editar Movimentações</h5>
       </div>
       <div class="card-body">
         <form>
@@ -30,6 +31,7 @@
                   class="form-control"
                   placeholder=""
                   value=""
+                  t
                 />
               </div>
             </div>
@@ -54,10 +56,19 @@
             <div class="update ml-auto mr-auto">
               <button
                 type="button"
+                *ngIf="!isEdit"
                 (click)="saveFinance()"
                 class="btn btn-primary btn-round"
               >
                 Criar Movimentações
+              </button>
+              <button
+                type="button"
+                *ngIf="isEdit"
+                (click)="updateFinance()"
+                class="btn btn-primary btn-round"
+              >
+                Editar Movimentações
               </button>
             </div>
           </div>

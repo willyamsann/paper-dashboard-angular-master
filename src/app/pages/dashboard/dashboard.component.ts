@@ -3,6 +3,7 @@ import Chart from "chart.js";
 import { Finance } from "../../models/finance";
 import { FinanceApi } from "../../models/finance-api";
 import { FinanceService } from "../../services/finance-service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "dashboard-cmp",
@@ -72,7 +73,7 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
-  constructor(private financeService: FinanceService) {}
+  constructor(private financeService: FinanceService, private router: Router) {}
 
   ngOnInit() {
     this.financas.push(this.financa);
@@ -403,6 +404,17 @@ export class DashboardComponent implements OnInit {
     this.financeService.getFinance().subscribe((financeApis: FinanceApi[]) => {
       this.financeApi = financeApis;
       console.log(this.financeApi);
+    });
+  }
+
+  details(id: number) {
+    this.router.navigate(["/user", { id: id }]);
+  }
+
+  deleteById(id: number) {
+    this.financeService.deleteById(id).subscribe(() => {
+      console.log("OK");
+      this.getFinances();
     });
   }
 }

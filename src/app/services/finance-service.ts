@@ -42,7 +42,7 @@ export class FinanceService {
 
   updateFinance(Financeapi: FinanceApi): Observable<FinanceApi> {
     return this.httpClient.put<FinanceApi>(
-      this.url + "/projetos" + Financeapi.id,
+      this.url + "/projetos/" + Financeapi.id,
       JSON.stringify(Financeapi),
       this.httpOptions
     );
@@ -50,7 +50,7 @@ export class FinanceService {
 
   deleteById(id: number) {
     return this.httpClient
-      .delete(this.url + "/projetos" + id, this.httpOptions)
+      .delete(this.url + "/projetos/" + id, this.httpOptions)
       .pipe(retry(2));
   }
 }
