@@ -9,17 +9,19 @@ import {
 import { environment } from "../../environments/environment";
 import { Observable } from "rxjs";
 
+import { AuthenticationService } from "../services/authentication.service";
+
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private authentication: AuthenticationService) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const currentUser = "";
-    const isLoggedIn = "";
-    const isApiUrl = "";
+    const currentUser = this.authentication.cuurenteUserValue;
+    const isLoggedIn = currentUser && currentUser.token;
+    const isApiUrl = request.url.startsWith(environment.apiUrl);
     if (isLoggedIn && isApiUrl) {
       request = request.clone({
         setHeaders: {

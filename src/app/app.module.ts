@@ -7,12 +7,12 @@ import { SidebarModule } from "./sidebar/sidebar.module";
 import { FooterModule } from "./shared/footer/footer.module";
 import { NavbarModule } from "./shared/navbar/navbar.module";
 import { FixedPluginModule } from "./shared/fixedplugin/fixedplugin.module";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { AppRoutes } from "./app.routing";
-
+import { JwtInterceptor, ErrorInterceptor } from "../app/helpers/index";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
-
+import { LoginComponent } from "./pages/login/login.component";
 import { LOCALE_ID, DEFAULT_CURRENCY_CODE } from "@angular/core";
 import localePt from "@angular/common/locales/pt";
 import { registerLocaleData } from "@angular/common";
@@ -20,7 +20,7 @@ import { registerLocaleData } from "@angular/common";
 registerLocaleData(localePt, "pt");
 
 @NgModule({
-  declarations: [AppComponent, AdminLayoutComponent],
+  declarations: [AppComponent, AdminLayoutComponent, LoginComponent],
   imports: [
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes, {
@@ -41,6 +41,16 @@ registerLocaleData(localePt, "pt");
     {
       provide: DEFAULT_CURRENCY_CODE,
       useValue: "BRL",
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],
